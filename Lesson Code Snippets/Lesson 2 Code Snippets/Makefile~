@@ -1,0 +1,14 @@
+NVCC = nvcc
+NFLAGS = -arch sm_20
+
+TARGETS = atomics associative
+
+all: $(TARGETS)
+
+atomics: atomics.cu
+	$(NVCC) $(NFLAGS) atomics.cu -o $@
+
+associative: associative.cu
+	$(NVCC) $(NFLAGS) associative.cu -o $@
+clean:
+	rm -f *.o $(TARGETS)

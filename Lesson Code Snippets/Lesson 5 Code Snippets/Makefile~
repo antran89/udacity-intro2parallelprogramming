@@ -1,0 +1,14 @@
+NVCC = nvcc
+NVCC_OPTS = -pipe -D __STDC_CONSTANT_MACROS -D STD=std -Wall -O3 -DNDEBUG -ggdb -arch=sm_20 -Xcompiler -Wall -Xcompiler -Wextra -m64
+
+TARGETS = transpose deviceQuery_simplified
+
+all: $(TARGETS)
+
+reduce: reduce.cu
+	$(NVCC) $(NVCC_OPTS) -o $@ $<
+
+deviceQuery_simplified: deviceQuery_simplified.cu
+	$(NVCC) $(NVCC_OPTS) -o $@ $<
+clean:
+	rm -f *.o $(TARGETS)
